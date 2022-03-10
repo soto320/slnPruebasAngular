@@ -1,0 +1,84 @@
+<app-header></app-header>
+<div class="content">
+    <div class="container" style="margin-top:10px;">
+      <div class="card text-center">
+        <div class="card-header">
+          <h2>Lista Vivienda</h2>
+          <div>
+            <button type="button" class="btn btn-dark" (click)="NuevoVivienda(contenido)">Nuevo</button>
+          </div>
+        </div>
+        <div class="card-body">
+          <table class="table table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Tipo Vivienda</th>
+                <th scope="col">Area</th>
+                <th scope="col">Ubicacion</th>
+                <th scope="col">Precio</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of listVivienda" >
+                <th scope="row" (click)="EditarVivienda(item.id,contenido)">{{item.id}}</th>
+                <td (click)="EditarVivienda(item.id, contenido)">{{item.tipovivienda}}</td>
+                <td (click)="EditarVivienda(item.id, contenido)">{{item.area}}</td>
+                <td (click)="EditarVivienda(item.id, contenido)">{{item.ubicacion}}</td>
+                <td (click)="EditarVivienda(item.id, contenido)">{{item.precio}}</td>
+                <td ><button type="button" class="btn btn-danger " (click)="EliminarEliminar(item.id)"  >Eliminar</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card-footer text-muted">
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-template style="z-index:2000;" #contenido let-modal>
+    <div class="modal-header">
+  
+  <h4 class="modal-title" >Editar Persona</h4>
+      <button type="button" class="close"  aria-label="Close" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup] = "gpViviendaForm" (ngSubmit) = "onsave(gpViviendaForm.value)">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="id">#</label>
+          <input type="text" class="form-control" id="id" placeholder="id" formControlName="id">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="tipovivienda">Tipo Vivienda</label>
+          <input type="text" class="form-control" id="tipovivienda" placeholder="Casa" formControlName="tipovivienda">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="area">Area</label>
+          <input type="text" class="form-control" id="area" placeholder="100m" formControlName="area">
+        </div>
+        <div class="form-group col-md-6">
+          <label for="ubicacion">Ubicacion</label>
+          <input type="text" class="form-control" id="ubicacion" placeholder="Urbano" formControlName="ubicacion">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="precio">precio</label>
+          <input type="text" class="form-control" id="precio" placeholder="100000" formControlName="precio">
+        </div>
+      </div>
+      <button type="submit" class="btn lg btn-dark btn-block">Guardar</button>
+    </form>
+
+  </div>
+  <!--<div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="modal.close()">Close</button>
+  </div>-->
+  </ng-template>
+<app-footer></app-footer>
